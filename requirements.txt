@@ -1,1 +1,4 @@
-
+ray[data]
+pandas
+numpy
+faker
