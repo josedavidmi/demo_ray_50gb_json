@@ -12,10 +12,6 @@ demo_ray_50gb_json/
 ├─ src/
 │  ├─ generar_json_falso.py
 │  └─ procesar_con_ray_dataset.py
-├─ notebooks/
-│  └─ 01_demo_ray_dataset.ipynb
-├─ docs/
-│  └─ diagrama_flujo.md  (opcional)
 └─ data/
    ├─ raw/         (JSON en el USB / enlace simbólico, opcional)
    └─ processed/   (salidas parquet, si quieres)
