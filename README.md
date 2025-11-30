@@ -1,6 +1,6 @@
 # demo_ray_50gb_json
 
-<img src="./imagenes/imagen1.png" alt="Diagrama conceptual de Big Data" width="300"/>   <img src="./imagenes/imagen2.png" alt="Diagrama conceptual de Big Data" width="300"/>
+<img src="./images/imagen1.png" alt="Diagrama conceptual de Big Data" width="300"/>   <img src="./images/imagen2.png" alt="Diagrama conceptual de Big Data" width="300"/>
 
 Demo de cómo procesar un archivo JSON Lines muy grande (decenas de GB)
 usando **Ray Datasets** en un entorno local (Windows 11).
