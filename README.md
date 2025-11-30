@@ -70,46 +70,62 @@ Hace tres cosas principales:
    - Escribe el resultado en formato **parquet particionado** en una carpeta de salida (una especie de “bucket local”).
 
 ## 5. Cómo usarlo en clase (resumen)
-1. Ejecutar `python data/generar_datos.py`.
-2. Verificar tamaño del CSV (que sea “grandecito”).
-3. Ejecutar `python procesar_con_dask.py`.
-4. Comentar:
-    * qué hace blocksize,
-    * qué pasa en .compute(),
-    * por qué se puede escalar a varios nodos sin cambiar mucho el código.
 
-## 6. Instalación y Configuración
+   1. Ejecutar el generador de datos sintéticos (JSON Lines):
 
+   ```bash
+   python src/generar_json_falso.py
+   ```
+   2. Verificar el tamaño del fichero JSON (que sea “grandecito”, p. ej. 0.5–1 GB al principio).
+   3. Ejecutar el script principal con Ray Datasets:
+   ```bash
+   python src/procesar_con_ray_dataset.py
+   ```
+   4. Comentar en clase:
+      * Qué hace ray.data.read_json(...):
+         * Cómo trata el fichero como muchos bloques (particiones) y no como un único DataFrame gigante.
+      * Qué hace map_batches(...):
+         * Cómo pasa lotes (batches) de datos a la función de transformación y los reparte entre varios núcleos.
+      * Qué implica llamar a mean() o write_parquet(...):
+         * Cómo se dispara el cómputo distribuido (cada bloque calcula su parte y Ray combina los resultados).
+      * Por qué este patrón se puede escalar:
+         * A más núcleos en una máquina,
+         * o a varios nodos de un clúster Ray, sin cambiar casi nada del código de transformación.
+## 6. Instalación y configuración
 Sigue estos pasos para descargar el proyecto y preparar tu entorno de trabajo aislado.
 
 ### Clonar el repositorio
 ```bash
-git clone https://github.com/josedavidmi/demo_dask_500gb-.git
-cd demo_dask_500gb
+git clone https://github.com/tu_usuario/demo_ray_50gb_json.git
+cd demo_ray_50gb_json
 ```
+(Sustituye tu_usuario por tu usuario real de GitHub.)
 
 ### Crear y activar el entorno virtual
 
-Es fundamental crear un entorno aislado (`env`) para no corromper tu instalación local de Python.
+Es fundamental crear un entorno aislado (env) para no corromper tu instalación local de Python.
 
-**En Windows:**
+#### En Windows:
 
 ```bash
 python -m venv env
 .\env\Scripts\activate
 ```
-
-**En Mac / Linux:**
+#### En Mac / Linux:
 
 ```bash
 python3 -m venv env
 source env/bin/activate
 ```
 
->  **Nota:** Sabrás que funciona si ves `(env)` al inicio de tu terminal.
+__Nota__: Sabrás que funciona si ves (env) al inicio de tu terminal.
 
 ### Instalar dependencias
-
 ```bash
 pip install -r requirements.txt
 ```
+
+A partir de aquí ya puedes:
+* Generar datos con src/generar_json_falso.py.
+* Procesarlos con src/procesar_con_ray_dataset.py.
+* O abrir el notebook de demo (si lo has creado) en notebooks/01_demo_ray_dataset.ipynb.
