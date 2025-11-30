@@ -73,14 +73,14 @@ Hace tres cosas principales:
 
    1. Ejecutar el generador de datos sintéticos (JSON Lines):
 
-   ```bash
-   python src/generar_json_falso.py
-   ```
+      ```bash
+      python src/generar_json_falso.py
+      ```
    2. Verificar el tamaño del fichero JSON (que sea “grandecito”, p. ej. 0.5–1 GB al principio).
    3. Ejecutar el script principal con Ray Datasets:
-   ```bash
-   python src/procesar_con_ray_dataset.py
-   ```
+      ```bash
+      python src/procesar_con_ray_dataset.py
+      ```
    4. Comentar en clase:
       * Qué hace ray.data.read_json(...):
          * Cómo trata el fichero como muchos bloques (particiones) y no como un único DataFrame gigante.
